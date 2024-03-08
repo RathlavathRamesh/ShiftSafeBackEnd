@@ -3,24 +3,21 @@ const mongoose = require('mongoose');
 const cors=require('cors');
 const bodyParser = require('body-parser');
 const app = express();
-
-
-const userRouter = require('./routes/user.router.js');
-const adminRouter=require('./routes/item.router.js')
-
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use("/api/item",adminRouter);
-app.use("/api/item",adminRouter)
+const userRouter = require('./routes/user.router.js');
+const itemsRouter=require('./routes/item.router.js')
+const adminRouter=require('./routes/admin.router.js')
+
+app.use("/api/item",itemsRouter);
+app.use('/api/user',userRouter);
+app.use('/api/admin',adminRouter);
 
 // Connect to MongoDB with error handling
 mongoose.connect('mongodb://localhost:27017/CourierItems')
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('Error connecting to MongoDB:', err));
-
-app.use('/api/user',userRouter);
-app.use('/api/user',userRouter);
 
  app.put('/api/ubdatestatus',async(req,res)=>{
     const {body}=req

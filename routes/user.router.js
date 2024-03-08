@@ -32,9 +32,11 @@ router.post('/login',async(request,response)=>{
 })
 
 
+
 // User Registration API 
 router.post('/register',async(req,res)=>{
     const {body}=req;
+    console.log(body)
     try{
      if (!body.password || !body.user_name) {
        return res.status(400).json('Missing required field: name');
