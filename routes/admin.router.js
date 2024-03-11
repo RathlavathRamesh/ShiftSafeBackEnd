@@ -7,6 +7,7 @@ const AdminModel=require('../models/admin.model')
 // ADMIN LOGIN API 
 router.post('/login',async(request,response)=>{
     const { user_name, password } = request.body;
+    console.log("Admin Is Logged In");
     const payLoad = { user_name};
     const jwtToken = jwt.sign(payLoad, "SECRET_KEY");
     try{
